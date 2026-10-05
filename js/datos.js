@@ -8,9 +8,9 @@ const SITIO = {
 
 // Cada categoría tiene un color de fondo y el color de su texto.
 const CATEGORIAS = [
-  { id: "videoclips",    nombre: "Videoclips",    color: "#2B3AF0", texto: "#FFFFFF" },
-  { id: "flyers",        nombre: "Flyers",        color: "#FF5C9E", texto: "#1A1A24" },
-  { id: "merchandising", nombre: "Merchandising", color: "#D9F24A", texto: "#1A1A24" },
+  { id: "videoclips",    nombre: "videoclips",    color: "#2B3AF0", texto: "#FFFFFF" },
+  { id: "flyers",        nombre: "flyers",        color: "#FF5C9E", texto: "#1A1A24" },
+  { id: "merchandising", nombre: "merchandising", color: "#D9F24A", texto: "#1A1A24" },
 ];
 
 // Cada obra: copiá un bloque { ... }, pegalo abajo y cambiá los datos.
