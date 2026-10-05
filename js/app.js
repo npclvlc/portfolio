@@ -20,9 +20,9 @@ function enlace(destino, clase, contenido) {
   return a;
 }
 
+// El color de cada categoría se usa como acento sobre el fondo negro.
 function aplicarColor(nodo, categoria) {
   nodo.style.setProperty("--color", categoria.color);
-  nodo.style.setProperty("--texto", categoria.texto);
 }
 
 // Muestra una imagen (.jpg) o un video (.mp4) según la extensión.

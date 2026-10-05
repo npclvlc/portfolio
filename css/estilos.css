@@ -1,22 +1,33 @@
+/* =====================================================
+   TEMA NOCTURNO: fondo negro, letras blancas, tipografía monoespaciada
+   y barra de colores como motivo. Los colores se cambian en :root.
+   ===================================================== */
+
 /* ---------- Base ---------- */
 :root {
-  --tinta: #1A1A24;
-  --color: #1A1A24;   /* color de fondo de la categoría (lo cambia app.js) */
-  --texto: #FFFFFF;   /* color del texto sobre ese fondo */
+  --fondo: #000000;
+  --texto: #FFFFFF;
+  --apagado: #A0A0A0;  /* texto secundario */
+  --linea: #3A3A3A;    /* bordes finos */
+  --color: #FFFFFF;    /* acento de la categoría (lo cambia app.js) */
   --margen: clamp(1rem, 4vw, 3rem);
+  --barra: linear-gradient(90deg,
+    #FFD400 0 16.66%, #FF7A00 0 33.33%, #FF2D55 0 50%,
+    #B14BFF 0 66.66%, #2D7BFF 0 83.33%, #00D68F 0);
 }
 
 * { box-sizing: border-box; margin: 0; }
 
 body {
-  font-family: "Bricolage Grotesque", system-ui, sans-serif;
-  color: var(--tinta);
-  background: #fff;
-  line-height: 1.5;
+  font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.9375rem;
+  color: var(--texto);
+  background: var(--fondo);
+  line-height: 1.6;
 }
 
 a { color: inherit; text-decoration: none; }
-:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--texto); outline-offset: 3px; }
 
 /* ---------- Cabecera ---------- */
 #cabecera {
@@ -24,57 +35,73 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem 2rem;
-  padding: 1rem var(--margen);
+  gap: 0.5rem 2rem;
+  padding: 1.25rem var(--margen);
+  border-bottom: 8px solid;
+  border-image: var(--barra) 1;   /* barra de colores */
 }
-.logo { font-weight: 800; font-size: 1.25rem; }
-#cabecera nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
-#cabecera nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
+.logo { font-weight: 800; font-size: 1.125rem; }
+#cabecera nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+#cabecera nav a { color: var(--apagado); }
+#cabecera nav a:hover { color: var(--texto); text-decoration: underline; text-underline-offset: 5px; }
 
-/* ---------- Bloques de color (inicio y encabezados) ---------- */
+/* ---------- Bloques de categoría (inicio y encabezados) ---------- */
 .banda, .encabezado {
-  background: var(--color);
-  color: var(--texto);
-  padding: clamp(2rem, 6vw, 5rem) var(--margen);
+  padding: clamp(2rem, 6vw, 4rem) var(--margen);
+  border-top: 8px solid var(--color);   /* franja con el color de la categoría */
 }
 
 .banda-titulo, .titulo-pagina {
   display: block;
-  font-size: clamp(3rem, 13vw, 11rem);
+  font-size: clamp(2.25rem, 9vw, 8rem);
   font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  line-height: 1;
+  letter-spacing: -0.05em;
   margin-bottom: clamp(1.5rem, 4vw, 3rem);
 }
-.banda-titulo:hover { text-decoration: underline; text-underline-offset: 0.08em; }
+.banda-titulo:hover { color: var(--color); }
 
 /* ---------- Obras ---------- */
 .rejilla {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
-  gap: 1.25rem;
+  gap: 1rem;
 }
-.tarjeta { display: block; }
+.tarjeta {
+  display: block;
+  padding: 0.5rem;
+  border: 1px solid var(--linea);
+}
+.tarjeta:hover { border-color: var(--color); }
 .tarjeta img, .tarjeta video {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--linea);
 }
-.tarjeta-titulo { display: block; margin-top: 0.5rem; font-weight: 600; }
-.tarjeta:hover .tarjeta-titulo { text-decoration: underline; }
+.tarjeta-titulo { display: block; margin-top: 0.5rem; color: var(--apagado); }
+.tarjeta:hover .tarjeta-titulo { color: var(--texto); }
 
 /* ---------- Páginas de categoría y de obra ---------- */
 .contenido-pagina { padding: var(--margen); }
-.encabezado .titulo-pagina { margin-bottom: 1rem; }
-.volver { display: inline-block; margin-bottom: 1.5rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.encabezado .titulo-pagina { margin-bottom: 1.5rem; }
+.volver { display: inline-block; margin-bottom: 1.5rem; color: var(--apagado); text-decoration: underline; text-underline-offset: 4px; }
+.volver:hover { color: var(--texto); }
 
-.encabezado dl { display: flex; gap: 0.75rem; margin-bottom: 1rem; font-size: 1.125rem; }
-.encabezado dt { font-weight: 800; }
-.descripcion { max-width: 60ch; font-size: 1.125rem; }
+.encabezado dl {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  max-width: 40rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--linea);
+  border-bottom: 1px solid var(--linea);
+}
+.encabezado dt { color: var(--apagado); }
+.descripcion { max-width: 70ch; }
 
-.galeria { display: grid; gap: 1.25rem; padding: var(--margen); max-width: 1400px; margin: 0 auto; }
+.galeria { display: grid; gap: 1rem; padding: var(--margen); max-width: 1400px; margin: 0 auto; }
 .galeria img, .galeria video { display: block; width: 100%; height: auto; }
 
-.aviso { padding: var(--margen); font-size: 1.25rem; }
+.aviso { padding: var(--margen); font-size: 1.125rem; }
